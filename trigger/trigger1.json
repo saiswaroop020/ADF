@@ -1,0 +1,28 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "customer_analysis",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"filename": "@triggerBody().filename"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/customeranalyticscontainer/blobs/landing",
+			"blobPathEndsWith": "orders .csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/0870ddca-164e-4974-82f2-c10598a8316e/resourceGroups/customer_analytics_rg/providers/Microsoft.Storage/storageAccounts/customeranalyticssa",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
